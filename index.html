@@ -4,128 +4,426 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Thea Maneckshaw - Wikipedia</title>
+<link rel="icon" href="https://en.wikipedia.org/favicon.ico">
 <style>
-body{margin:0;font-family:Arial,Helvetica,sans-serif;background:#f6f6f6;color:#202122}
-a{color:#0645ad;text-decoration:none} a:hover{text-decoration:underline}
-#container{max-width:1200px;margin:auto;display:flex}
-#sidebar{width:180px;padding:20px 10px;font-size:14px}
-#content{background:#fff;border-left:1px solid #a2a9b1;padding:20px;flex:1}
-.topbar{display:flex;justify-content:flex-end;border-bottom:1px solid #a2a9b1;padding-bottom:10px}
-.searchbox input{padding:6px;border:1px solid #a2a9b1;width:220px}
-.title{font-family:Georgia,serif;font-size:34px;font-weight:normal}
-.subtitle{font-size:13px;color:#54595d;margin-bottom:15px}
-.infobox{float:right;width:300px;margin:0 0 20px 20px;border:1px solid #a2a9b1;background:#f8f9fa;font-size:14px}
-.infobox th{background:#cedff2;padding:8px}
-.infobox td{padding:6px;border-top:1px solid #eaecf0}
-.infobox img{width:100%}
-.toc{width:320px;background:#f8f9fa;border:1px solid #a2a9b1;padding:10px;margin:20px 0}
-h2{border-bottom:1px solid #a2a9b1;font-family:Georgia,serif;font-weight:normal}
-.notice{border:1px solid #f0c36d;background:#fff8d6;padding:10px;margin:15px 0}
-.categories{margin-top:30px;padding:8px;border:1px solid #a2a9b1;background:#f8f9fa;font-size:13px}
-.edit{font-size:12px;color:#54595d}
-@media(max-width:900px){#sidebar{display:none}.infobox{float:none;width:100%;margin:20px 0}.toc{width:auto}}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:-apple-system,'Linux Libertine','Georgia','Times',serif;font-size:14px;background:#f8f9fa;color:#202122;line-height:1.6}
+a{color:#3366cc;text-decoration:none}
+a:hover{text-decoration:underline}
+.mw-page-container{display:flex;min-height:100vh}
+
+/* Sidebar */
+#mw-sidebar{width:160px;min-width:160px;background:#f8f9fa;border-right:1px solid #a2a9b1;padding:0;font-size:13px}
+.sidebar-logo{padding:12px 16px 8px;border-bottom:1px solid #a2a9b1}
+.sidebar-logo img{width:50px}
+.sidebar-logo span{display:block;font-family:serif;font-size:11px;color:#54595d;margin-top:2px}
+.sidebar-section{padding:8px 0}
+.sidebar-section h3{font-size:11px;font-weight:bold;color:#54595d;text-transform:uppercase;letter-spacing:.5px;padding:4px 16px}
+.sidebar-section a{display:block;padding:3px 16px;color:#3366cc;font-size:13px}
+.sidebar-section a:hover{background:#eaf3fb}
+
+/* Top navigation bar */
+#mw-head{background:#fff;border-bottom:1px solid #a2a9b1;padding:4px 0 0}
+.mw-head-inner{display:flex;align-items:flex-end;justify-content:space-between;padding:0 16px}
+.page-tabs{display:flex;gap:0}
+.page-tab{display:inline-block;padding:6px 12px;font-size:13px;color:#3366cc;border:1px solid #a2a9b1;border-bottom:none;background:#f8f9fa;margin-right:2px;cursor:pointer;border-radius:3px 3px 0 0}
+.page-tab.active{background:#fff;color:#202122;position:relative;bottom:-1px;border-bottom:1px solid #fff}
+.mw-head-user{display:flex;gap:12px;font-size:12px;padding-bottom:6px;color:#3366cc}
+.mw-searchbar{display:flex;gap:4px;padding:6px 16px;background:#eaf3fb;border-top:1px solid #a2a9b1}
+.mw-searchbar input{padding:5px 8px;border:1px solid #a2a9b1;background:#fff;font-size:13px;width:280px;border-radius:2px}
+.mw-searchbar button{padding:5px 10px;background:#f8f9fa;border:1px solid #a2a9b1;font-size:12px;cursor:pointer;border-radius:2px}
+
+/* Content */
+#content{flex:1;background:#fff;padding:20px 30px 40px;min-width:0;border-left:1px solid #a2a9b1}
+.firstHeading{font-family:'Linux Libertine','Georgia',serif;font-size:28px;font-weight:normal;color:#000;border-bottom:1px solid #a2a9b1;padding-bottom:4px;margin-bottom:4px;line-height:1.2}
+.tagline{font-size:12px;color:#54595d;margin-bottom:16px;font-style:italic}
+
+/* Hatnotes / notices */
+.hatnote{background:#f8f9fa;border-left:3px solid #a2a9b1;padding:8px 12px;font-size:13px;margin:12px 0;color:#54595d}
+.ambox{border:1px solid #a2a9b1;background:#fbfbfb;display:flex;gap:12px;padding:10px;margin:16px 0;font-size:13px}
+.ambox-image{font-size:28px;line-height:1}
+.ambox-text{color:#54595d}
+.ambox-text b{color:#202122}
+
+/* Infobox */
+.infobox{float:right;clear:right;margin:0 0 16px 24px;padding:0;border:1px solid #a2a9b1;background:#f8f9fa;font-size:13px;line-height:1.5;width:280px}
+.infobox-title{background:#cedff2;text-align:center;font-weight:bold;padding:6px 8px;font-size:14px;border-bottom:1px solid #a2a9b1}
+.infobox-image{text-align:center;padding:8px;border-bottom:1px solid #a2a9b1}
+.infobox-image img{max-width:100%;max-height:220px;object-fit:cover}
+.infobox-image-placeholder{width:100%;height:180px;background:#e8e8e8;display:flex;flex-direction:column;align-items:center;justify-content:center;color:#888;font-size:12px;gap:6px}
+.infobox-image-placeholder svg{opacity:.4}
+.infobox table{width:100%;border-collapse:collapse}
+.infobox tr{border-top:1px solid #eaecf0}
+.infobox td,.infobox th{padding:5px 8px;vertical-align:top}
+.infobox th{font-weight:bold;white-space:nowrap;width:40%}
+
+/* Body */
+p{margin:8px 0 10px}
+.mw-parser-output > p:first-of-type{font-size:14px}
+h2.section-heading{font-family:'Linux Libertine','Georgia',serif;font-size:20px;font-weight:normal;border-bottom:1px solid #a2a9b1;margin:24px 0 8px;padding-bottom:4px}
+h3.subsection-heading{font-family:inherit;font-size:14px;font-weight:bold;margin:14px 0 6px}
+.mw-editsection{font-family:-apple-system,sans-serif;font-size:11px;font-weight:normal;color:#3366cc;margin-left:6px}
+.mw-editsection a{color:#3366cc}
+
+/* TOC */
+#toc{background:#f8f9fa;border:1px solid #a2a9b1;padding:10px 14px;display:inline-block;margin:16px 0;font-size:13px;min-width:200px}
+#toc .toctitle{font-weight:bold;margin-bottom:6px;display:flex;justify-content:space-between}
+#toc .toctitle span{font-weight:normal;color:#3366cc;font-size:12px;cursor:pointer}
+#toc ol{padding-left:20px;margin:0}
+#toc li{margin:2px 0}
+#toc a{color:#3366cc}
+#toc .tocnumber{margin-right:4px}
+#toc ol ol{padding-left:16px}
+
+/* Lists */
+ul,ol{padding-left:28px;margin:8px 0}
+li{margin:3px 0}
+
+/* Footnotes */
+sup{font-size:11px}
+sup a{color:#3366cc}
+.reflist{font-size:12px;column-count:2;column-gap:24px}
+.reflist ol{padding-left:20px}
+.reflist li{margin:4px 0;break-inside:avoid}
+
+/* Categories */
+#catlinks{border-top:1px solid #a2a9b1;margin-top:24px;padding-top:8px;font-size:13px}
+#catlinks a{color:#3366cc}
+
+/* Footer */
+#footer{background:#f8f9fa;border-top:1px solid #a2a9b1;padding:12px 16px;font-size:12px;color:#54595d;display:flex;justify-content:space-between;flex-wrap:wrap;gap:8px}
+
+/* Responsive */
+@media(max-width:800px){
+  #mw-sidebar{display:none}
+  .infobox{float:none;width:100%;margin:0 0 16px}
+  #content{padding:12px 16px 32px}
+  .reflist{column-count:1}
+}
+
+/* Hidden easter egg tooltip */
+.ee{border-bottom:1px dotted #3366cc;cursor:help;color:inherit}
+.ee:hover::after{content:attr(data-ee);position:fixed;bottom:12px;left:50%;transform:translateX(-50%);background:#202122;color:#fff;padding:6px 12px;border-radius:4px;font-size:12px;font-family:sans-serif;max-width:320px;text-align:center;z-index:9999;white-space:pre-wrap;pointer-events:none}
 </style>
 </head>
 <body>
-<div id="container">
-<div id="sidebar">
-<h3>Wikipedia</h3>
-<p><a href="#">Main page</a></p>
-<p><a href="#">Contents</a></p>
-<p><a href="#">Current events</a></p>
-<p><a href="#">Random article</a></p>
+
+<div class="mw-page-container">
+
+<!-- Sidebar -->
+<div id="mw-sidebar">
+  <div class="sidebar-logo">
+    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/8/80/Wikipedia-logo-v2.svg/103px-Wikipedia-logo-v2.svg.png" alt="Wikipedia">
+    <span>The Free Encyclopedia</span>
+  </div>
+  <div class="sidebar-section">
+    <h3>Navigation</h3>
+    <a href="#">Main page</a>
+    <a href="#">Contents</a>
+    <a href="#">Current events</a>
+    <a href="#">Random article</a>
+    <a href="#">About Wikipedia</a>
+  </div>
+  <div class="sidebar-section">
+    <h3>Contribute</h3>
+    <a href="#">Help</a>
+    <a href="#">Learn to edit</a>
+    <a href="#">Community portal</a>
+    <a href="#">Recent changes</a>
+  </div>
+  <div class="sidebar-section">
+    <h3>Tools</h3>
+    <a href="#">What links here</a>
+    <a href="#">Related changes</a>
+    <a href="#">Upload file</a>
+    <a href="#">Permanent link</a>
+  </div>
 </div>
 
-<div id="content">
-<div class="topbar"><div class="searchbox"><input placeholder="Search Wikipedia"></div></div>
+<!-- Main column -->
+<div style="flex:1;display:flex;flex-direction:column;min-width:0">
 
-<div class="title">Thea Maneckshaw</div>
-<div class="subtitle">From Wikipedia, the free encyclopedia</div>
+  <!-- Top nav -->
+  <div id="mw-head">
+    <div class="mw-head-inner">
+      <div class="page-tabs">
+        <span class="page-tab active">Article</span>
+        <span class="page-tab">Talk</span>
+        <span class="page-tab">Read</span>
+        <span class="page-tab">Edit</span>
+        <span class="page-tab">View history</span>
+      </div>
+      <div class="mw-head-user">
+        <a href="#">Create account</a>
+        <a href="#">Log in</a>
+      </div>
+    </div>
+    <div class="mw-searchbar">
+      <input type="text" placeholder="Search Wikipedia">
+      <button>Search</button>
+    </div>
+  </div>
 
-<div class="notice">
-This article may rely excessively on primary sources, eyewitness accounts, group chats, and voice notes. Additional citations may be required.
-</div>
+  <!-- Article content -->
+  <div id="content">
 
-<table class="infobox">
-<tr><th colspan="2">Thea Maneckshaw</th></tr>
-<tr><td colspan="2"><img src="thea.jpg" alt="Thea"></td></tr>
-<tr><td><b>Born</b></td><td>11 June 2000</td></tr>
-<tr><td><b>Occupation</b></td><td>The Best Teacher to Exist</td></tr>
-<tr><td><b>Musical groups</b></td><td>Clefhangers (2018–2019)<br>Take Fifty-Six</td></tr>
-<tr><td><b>Known for</b></td><td>Cars monologues, crying on cue, 86 emotions at once, being ridiculously talented</td></tr>
-<tr><td><b>Parents</b></td><td>Hanoz ("Papa") and Anjali ("Ma") Maneckshaw</td></tr>
-<tr><td><b>Sibling</b></td><td>Shawn ("Shoon") Maneckshaw</td></tr>
-</table>
+    <h1 class="firstHeading">Thea Maneckshaw</h1>
+    <div class="tagline">From Wikipedia, the free encyclopedia</div>
 
-<p><b>Thea Maneckshaw</b> (born 11 June 2000) is a teacher, musician, artist, Formula One enthusiast and emotional phenomenon. She is best known for her work in education, participation in the musical groups <i>Clefhangers</i> and <i>Take Fifty-Six</i>, and her ability to experience approximately 86 emotions simultaneously.</p>
+    <div class="ambox">
+      <div class="ambox-image">ℹ️</div>
+      <div class="ambox-text">
+        <b>This article's neutrality is disputed.</b> Some sections have been flagged for containing what reviewers describe as "an embarrassing amount of genuine affection." The contributor has declined to revise these sections on the grounds that they are, in fact, accurate.<sup><a href="#">[citation needed]</a></sup>
+      </div>
+    </div>
 
-<div class="toc">
-<b>Contents</b>
-<ol>
-<li>Early life</li>
-<li>Education</li>
-<li>Music</li>
-<li>College years</li>
-<li>Career and adult life</li>
-<li>Interests</li>
-<li>Driving</li>
-<li>Personal life</li>
-<li>Legacy</li>
-<li>References</li>
-</ol>
-</div>
+    <!-- Infobox -->
+    <table class="infobox">
+      <tr><td colspan="2" class="infobox-title">Thea Maneckshaw</td></tr>
+      <tr>
+        <td colspan="2" class="infobox-image">
+          <div class="infobox-image-placeholder">
+            <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="#aaa" stroke-width="1.5"><circle cx="12" cy="8" r="4"/><path d="M4 20c0-4 3.6-7 8-7s8 3 8 7"/></svg>
+            <span>Photo of Thea</span>
+            <span style="font-size:10px;color:#aaa">(add thea.jpg to the same folder)</span>
+          </div>
+        </td>
+      </tr>
+      <tr><td colspan="2" style="background:#cedff2;font-weight:bold;padding:5px 8px;font-size:12px;text-align:center;text-transform:uppercase;letter-spacing:.4px">Personal information</td></tr>
+      <tr><th>Born</th><td>11 June 2000<br><span style="color:#54595d">Earlier than scheduled, upon hearing the sound of go-karts</span></td></tr>
+      <tr><th>Occupation</th><td>Teacher; musician; artist; <span class="ee" data-ee="(Also: the best person in the room, always.)">emotional phenomenon</span></td></tr>
+      <tr><th>Known for</th><td>86 emotions simultaneously; exceptional driving; <em>Cars</em> monologues; crying on cue</td></tr>
+      <tr><td colspan="2" style="background:#cedff2;font-weight:bold;padding:5px 8px;font-size:12px;text-align:center;text-transform:uppercase;letter-spacing:.4px">Music</td></tr>
+      <tr><th>Groups</th><td>Clefhangers (2018–2019)<br>Take Fifty-Six (present)</td></tr>
+      <tr><th>Instruments</th><td>Guitar, voice</td></tr>
+      <tr><td colspan="2" style="background:#cedff2;font-weight:bold;padding:5px 8px;font-size:12px;text-align:center;text-transform:uppercase;letter-spacing:.4px">Family</td></tr>
+      <tr><th>Parents</th><td>Hanoz ("Papa") and Anjali ("Ma") Maneckshaw</td></tr>
+      <tr><th>Sibling</th><td>Shawn ("Shoon") Maneckshaw</td></tr>
+    </table>
 
-<h2>Early life <span class="edit">[edit]</span></h2>
-<p>Thea Maneckshaw was born on 11 June 2000, reportedly earlier than expected after hearing the sound of go-karts and deciding she wished to participate. A small, curly-haired infant, she had already established a close personal relationship with poop before birth.</p>
-<p>She was famously born with shitty lungs, which she credits for her long-standing relationship with potty.</p>
-<p>She is known to have fallen asleep to Bryan Adams as a baby. In 2004 she was introduced to Pixar's <i>Cars</i>, an event widely regarded as one of the most significant moments of her development.</p>
+    <!-- Lead -->
+    <p>
+      <b>Thea Maneckshaw</b> (born 11 June 2000) is an Indian teacher, musician, artist, Formula One enthusiast, and <span class="ee" data-ee="Researchers estimate the current count at 86, though this figure is considered a lower bound.">multi-emotional individual</span> based in Pune, Maharashtra. She is noted for her work in education, her participation in the musical groups <em>Clefhangers</em> and <em>Take Fifty-Six</em>, and a widely documented capacity for love, loyalty, and enthusiasm that <span class="ee" data-ee="I gu. Always have, always will.">has not yet been found to have an upper limit.</span>
+    </p>
+    <p>
+      Maneckshaw is further distinguished by her proficiency in guitar, visual art, and songwriting; a well-regarded relationship with the Pixar film <em>Cars</em>; and a formidable talent for driving that has led multiple analysts to propose Formula One as a viable alternative career path.<sup><a href="#">[1]</a></sup>
+    </p>
 
-<h2>Education <span class="edit">[edit]</span></h2>
-<p>Maneckshaw attended Nowrosjee Wadia College. Accounts of her attendance vary considerably, though surviving records suggest she was at least aware that classes were taking place.<sup>[12]</sup></p>
+    <!-- TOC -->
+    <div id="toc">
+      <div class="toctitle">Contents <span onclick="this.closest('#toc').querySelector('ol').style.display=this.closest('#toc').querySelector('ol').style.display==='none'?'':'none'">[hide]</span></div>
+      <ol>
+        <li><a href="#early-life"><span class="tocnumber">1</span> Early life</a></li>
+        <li><a href="#education"><span class="tocnumber">2</span> Education</a></li>
+        <li><a href="#music"><span class="tocnumber">3</span> Music and artistic work</a></li>
+        <li><a href="#college"><span class="tocnumber">4</span> College years</a>
+          <ol>
+            <li><a href="#kronk"><span class="tocnumber">4.1</span> The Kronk Incident</a></li>
+          </ol>
+        </li>
+        <li><a href="#career"><span class="tocnumber">5</span> Career and adult life</a></li>
+        <li><a href="#interests"><span class="tocnumber">6</span> Interests</a></li>
+        <li><a href="#driving"><span class="tocnumber">7</span> Driving</a></li>
+        <li><a href="#personal"><span class="tocnumber">8</span> Personal life</a></li>
+        <li><a href="#legacy"><span class="tocnumber">9</span> Legacy</a></li>
+        <li><a href="#references"><span class="tocnumber">10</span> References</a></li>
+      </ol>
+    </div>
 
-<h2>Music <span class="edit">[edit]</span></h2>
-<p>She was a member of <i>Clefhangers</i> between 2018 and 2019 and remains associated with <i>Take Fifty-Six</i>. In addition to singing, she plays guitar, writes songs, paints, crafts and generally proves that "I can do that myself" is less a statement and more a lifestyle.</p>
+    <!-- Early life -->
+    <h2 class="section-heading" id="early-life">Early life <span class="mw-editsection">[<a href="#">edit</a>]</span></h2>
+    <p>
+      Thea Maneckshaw was born on 11 June 2000, arriving earlier than anticipated. Accounts vary; the most widely cited explanation holds that she heard the sound of go-karts in the vicinity and decided, characteristically, that she wished to participate immediately.<sup><a href="#">[2]</a></sup> She was, by all surviving records, a small and curly-haired infant.
+    </p>
+    <p>
+      In her earliest years, Maneckshaw is known to have fallen asleep regularly to the music of Bryan Adams, a fact her associates consider foundational to understanding her.<sup><a href="#">[3]</a></sup> In 2004, she was introduced to Pixar's <em>Cars</em>, an event the <em>Cars Recitation Monitoring Committee</em> has since classified as one of the most formative of the early twenty-first century. The influence of this film on Maneckshaw's worldview, vocabulary, and ability to deliver unprompted monologues cannot be overstated.<sup><a href="#">[4]</a></sup>
+    </p>
+    <p>
+      Her early cultural engagements also included <em>Teenage Mutant Ninja Turtles</em>, <em>Transformers</em>, <em>Shrek</em>, and the literary works of J.K. Rowling and Rick Riordan. Music historians have further noted her formative relationships with One Direction, 5 Seconds of Summer, and All Time Low — relationships described by contemporaries as <span class="ee" data-ee="Totally healthy. Absolutely normal. No notes.">"totally healthy."</span><sup><a href="#">[5]</a></sup>
+    </p>
 
-<h2>College years <span class="edit">[edit]</span></h2>
-<p>During her third day of college, Maneckshaw met Shivani Puranik ("Kronk"), an event now considered historically significant. The pair quickly formed a friendship characterized by relentless yapping, collaborative singing, mutual support, and making each other laugh until tears occurred (primarily on Thea's side).</p>
-<p>Other academic activities are believed to have occurred during this period. Mathematics may have been involved.</p>
+    <!-- Education -->
+    <h2 class="section-heading" id="education">Education <span class="mw-editsection">[<a href="#">edit</a>]</span></h2>
+    <p>
+      Maneckshaw attended <b>Nowrosjee Wadia College</b>, Pune. Her attendance record is described in institutional documents as <span class="ee" data-ee="This is being said with full awareness of what we are saying.">"exceptional"</span> — a characterisation that has not been disputed by any party willing to go on record.<sup><a href="#">[6]</a></sup>
+    </p>
+    <p>
+      The precise academic content of her studies remains a subject of some scholarly ambiguity. What is well-established is that the most significant outcome of this period was the meeting described in <a href="#kronk">§ 4.1</a>, below.
+    </p>
 
-<h2>Career and adult life <span class="edit">[edit]</span></h2>
-<p>Maneckshaw currently works as a teacher and has been described by multiple sources as "The Best Teacher to Exist." She successfully navigated the challenges of adulthood, including Getting a Job, Doing the Job, and Not Making Enough Money Despite Having a Job.</p>
+    <!-- Music -->
+    <h2 class="section-heading" id="music">Music and artistic work <span class="mw-editsection">[<a href="#">edit</a>]</span></h2>
+    <p>
+      Maneckshaw is a singer, guitarist, and songwriter. She was a member of the a cappella group <b>Clefhangers</b> from 2018 to 2019, and has remained associated with <b>Take Fifty-Six</b> on a permanent basis — a tenure described by one source as "for forever," which this encyclopaedia has chosen to print verbatim and without correction.<sup><a href="#">[7]</a></sup>
+    </p>
+    <p>
+      In addition to music, Maneckshaw is an active visual artist and craftsperson. She paints, builds, makes, and creates, generally operating under the personal philosophy that <em>"I can do that myself"</em> is not a statement but a lifestyle — and then proceeding to prove it, producing results that are, by consistent independent review, better than expected.<sup><a href="#">[8]</a></sup> This principle extends across media and has been observed in contexts ranging from home décor to gifts to things nobody asked her to improve but which are now demonstrably better.
+    </p>
 
-<h2>Interests <span class="edit">[edit]</span></h2>
-<p>Her interests include Formula One, dinosaurs, astronomy, and the television series <i>Dark</i>.</p>
-<p>Favourite foods include kheema par eedu, akuri, bibimbap, burritos and babka. Researchers have concluded that she is, in fact, a true eedu lover.</p>
-<p>Favourite drinks include apple cider, cherry coke, coconut water and banana caramel shakes.</p>
-<p>Favourite bands include Arctic Monkeys, Peter Cat Recording Co., Def Leppard and Waterparks.</p>
+    <!-- College years -->
+    <h2 class="section-heading" id="college">College years <span class="mw-editsection">[<a href="#">edit</a>]</span></h2>
+    <p>
+      Maneckshaw's college years are believed to have contained academic activity of various kinds. Mathematics may have been involved. The historical record on this point is incomplete, and the contributor to this article has elected not to speculate further.
+    </p>
 
-<h2>Driving <span class="edit">[edit]</span></h2>
-<p>Maneckshaw is widely regarded as an exceptional driver. Alternative career paths frequently proposed include Formula One driver and ride-share operator ("Oovoo Javer").</p>
+    <h3 class="subsection-heading" id="kronk">4.1 The Kronk Incident</h3>
+    <p>
+      On the third day of college, Maneckshaw (known in certain primary sources by the affectionate designation <em>Donkay</em>) met <b>Shivani Puranik</b> (known correspondingly as <em>Kronk</em>). This event, which the contributor of this article does not hesitate to describe as historically significant, is now considered one of the defining social developments of the period.<sup><a href="#">[9]</a></sup>
+    </p>
+    <p>
+      Contemporary accounts agree that Donkay and Kronk had not, in fact, stopped talking since. Their bond was characterised from the outset by collaborative singing, a shared and comprehensive willingness to judge everyone around them (openly, and without apology), and an ability to make each other laugh with a speed and intensity that eyewitness reports describe as <span class="ee" data-ee="Specifically Thea. Kronk is a composed and dignified individual. Thea is not.">occasionally resulting in tears on at least one side.</span><sup><a href="#">[10]</a></sup>
+    </p>
+    <p>
+      Among the documented events of this friendship: Kronk listened patiently to the full breadth of Donkay's antics. Donkay, in turn, stood up for Kronk's peace against what early drafts of this article referred to as the <em>Big Bad (socializing)</em>. Both parties report <span class="ee" data-ee="You gi. Every time.">having consistently had the other's back</span>, a finding corroborated across multiple group chat archives.<sup><a href="#">[11]</a></sup>
+    </p>
+    <p>
+      The pair also engaged in what contemporaries term <em>scream-singing</em> on multiple documented occasions, most notably to the track "Maniac" by Conan Gray, during which both parties have confirmed screaming the word <em>maniac</em> in unison upon each occurrence in the lyric. This practice is not listed under any known therapeutic intervention but has been independently described as excellent.<sup><a href="#">[12]</a></sup> Boba-related incidents from this period are discussed separately in <a href="#personal">§ 8</a>.
+    </p>
+    <p>
+      By the conclusion of this period, Donkay and Kronk had become, in the words of a witness who has requested anonymity, <em>"each other's biggest support systems — not to mention, just straight up family (approved by Bestie)."</em><sup><a href="#">[13]</a></sup>
+    </p>
+    <p>
+      The author of this article acknowledges having spent this entire subsection on Donkay and Kronk and has no intention of apologising.
+    </p>
 
-<h2>Personal life <span class="edit">[edit]</span></h2>
-<p>Close associates include Kronk, Tanvi, Kuku, Aastha, Ishrath, Darsh, Vrun Vrun, Sakshi and Ira.</p>
-<ul>
-<li>"We should do Secret Santa but just you and I."</li>
-<li>"For a PEE."</li>
-<li>"You have tears, I have hair."</li>
-</ul>
+    <!-- Career -->
+    <h2 class="section-heading" id="career">Career and adult life <span class="mw-editsection">[<a href="#">edit</a>]</span></h2>
+    <p>
+      Maneckshaw's transition into adulthood is described by most sources as having come with a standard set of challenges, including, but not limited to: Getting a Job, Doing the Job, and the perennial issue of <span class="ee" data-ee="Money fall hua? Asking for a friend.">Not Making Enough Money Despite Having a Job.</span><sup><a href="#">[14]</a></sup>
+    </p>
+    <p>
+      She has navigated this period by securing a position as a teacher — a role described by no fewer than eleven independent sources as perfectly suited to her, and which she is said to love.<sup><a href="#">[15]</a></sup> Student outcomes data has not been made publicly available, but anecdotal reports suggest she is, without qualification, <b>the best teacher to exist.</b>
+    </p>
+    <p>
+      Adult earnings have been further deployed toward the acquisition of what multiple primary sources describe simply as <em>"cool shit,"</em> a category whose precise composition is not within the scope of this article but which reviewers have described as well-curated.<sup><a href="#">[16]</a></sup>
+    </p>
 
-<h2>Legacy <span class="edit">[edit]</span></h2>
-<p>Friends and family consistently describe Maneckshaw as fiercely loyal, deeply compassionate and incapable of loving halfway. She is known not only for sharing in the excitement of others, but for amplifying it.</p>
-<p>There are very few people in the world who are genuinely and undoubtedly good. Contemporary scholarship places Maneckshaw firmly within that category.</p>
-<p><i>As of 2025, researchers have been unable to determine whether Thea's capacity for love, enthusiasm, emotional support and tears has an upper limit.</i></p>
+    <!-- Interests -->
+    <h2 class="section-heading" id="interests">Interests <span class="mw-editsection">[<a href="#">edit</a>]</span></h2>
+    <p>
+      Maneckshaw's documented interests span several domains. She is an enthusiast of <b>Formula One</b> motor racing, <b>dinosaurs</b>, and <b>astronomy</b>. Her favourite television programme is <em>Dark</em> (Netflix, 2017–2020), and she has been described by at least one source as <span class="ee" data-ee="She also won't let horror stop her if the movie is actually interesting. This is very on-brand.">reluctant about horror films, but not intimidated by them.</span><sup><a href="#">[17]</a></sup>
+    </p>
+    <p>
+      She has a sustained and well-documented relationship with the novel <em>Project Hail Mary</em> by Andy Weir, references to which appear across multiple independent sources with a frequency that suggests deep personal significance.<sup><a href="#">[18]</a></sup>
+    </p>
 
-<h2>References <span class="edit">[edit]</span></h2>
-<ol>
-<li>Group Chat Archives.</li>
-<li>Cars Recitation Monitoring Committee Annual Report.</li>
-<li>Puranik, S. (2025). Investigation into Whether Thea Was Ever Actually Present.</li>
-</ol>
+    <h3 class="subsection-heading">Culinary preferences</h3>
+    <p>
+      Maneckshaw's food preferences are characterised by scholars primarily by an intense and abiding relationship with eggs, leading the <em>Eedu Lover Classification Board</em> to formally designate her <em>"a true eedu lover"</em> following a comprehensive review. Favourite dishes include kheema par eedu, akuri, bibimbap, burritos, and babka.<sup><a href="#">[19]</a></sup>
+    </p>
+    <p>
+      Preferred beverages include apple cider, cherry coke, coconut water, and banana caramel shakes. No anomalies were noted.
+    </p>
 
-<div class="categories">
-Categories: 2000 births | Living people | Teachers | Cars enthusiasts | Eedu lovers | People with 86 emotions
-</div>
-</div>
-</div>
+    <h3 class="subsection-heading">Musical taste</h3>
+    <p>
+      Favourite bands include Arctic Monkeys, Peter Cat Recording Co., Def Leppard, and Waterparks. She also plays and writes music of her own, and is described by multiple witnesses as singing <span class="ee" data-ee="She is the low notes. This is a fact and also a compliment of the highest order.">"like an angel."</span><sup><a href="#">[20]</a></sup>
+    </p>
+
+    <!-- Driving -->
+    <h2 class="section-heading" id="driving">Driving <span class="mw-editsection">[<a href="#">edit</a>]</span></h2>
+    <p>
+      Maneckshaw is regarded across multiple independent assessments as an <b>exceptional driver.</b> The origin of this ability is traced by some scholars to her early exposure to <em>Cars</em>; others attribute it to an innate aptitude that was always there and simply needed a road.<sup><a href="#">[21]</a></sup>
+    </p>
+    <p>
+      Alternative career paths proposed on her behalf include Formula One driver and ride-share operator. The latter designation — locally rendered as <em><span class="ee" data-ee="Oovoo Javer. You know exactly what this means.">"Oovoo Javer"</span></em> — is considered a high-status role by those familiar with the regional terminology.<sup><a href="#">[22]</a></sup>
+    </p>
+
+    <!-- Personal life -->
+    <h2 class="section-heading" id="personal">Personal life <span class="mw-editsection">[<a href="#">edit</a>]</span></h2>
+    <p>
+      Maneckshaw's close personal associates include Kronk (Shivani Puranik), Tanvi, Kuku, Aastha, Ishrath, Darsh, Vrun Vrun, Sakshi, and Ira. A significant portion of primary sources for this article originate from communications within this network.<sup><a href="#">[23]</a></sup>
+    </p>
+    <p>
+      A notable incident from this period involved a boba beverage, excessive laughter, and the laws of fluid dynamics operating as expected. Maneckshaw was not at fault. Her associate was.<sup><a href="#">[24]</a></sup>
+    </p>
+    <p>
+      Recurring phrases documented in the personal archive include:
+    </p>
+    <ul>
+      <li><span class="ee" data-ee="We should do Secret Santa but just you and I. (We both know what this means.)">"We should do Secret Santa — but just you and I."</span></li>
+      <li><span class="ee" data-ee="For a PEE. This required its own bullet point and it earned it.">"For a pee."</span></li>
+      <li><span class="ee" data-ee="This one always wins. It always will.">"You have tears. I have hair."</span></li>
+      <li><em>"I gu"</em> and <em>"you gi"</em> — a bilateral shorthand whose full meaning is documented extensively in the oral record and requires no additional annotation here.<sup><a href="#">[25]</a></sup></li>
+      <li><span class="ee" data-ee="Love her so much but you can't remember what she looks like. You know who you are.">"Love her so much but can't remember what she looks like."</span></li>
+    </ul>
+    <p>
+      Comparativists have noted a recurring <span class="ee" data-ee="She is the pink. You are the black. She is the pumpkin spice latte. You are the iced americano. She is the low notes; you are the high notes. Together: a harmony.">duality framework</span> in descriptions of Maneckshaw's social dynamic — specifically, the characterisation of Maneckshaw as pink to a counterpart's black; as pumpkin spice latte to an iced americano; as low notes to someone's high notes in a harmony. Analysts have been unable to determine whether this framework is metaphorical or literal and have concluded that it may not matter.<sup><a href="#">[26]</a></sup>
+    </p>
+
+    <!-- Legacy -->
+    <h2 class="section-heading" id="legacy">Legacy <span class="mw-editsection">[<a href="#">edit</a>]</span></h2>
+    <p>
+      Maneckshaw is described by those who know her as <b>fiercely loyal</b>, <b>deeply compassionate</b>, and constitutionally incapable of loving halfway. She wears her heart on her sleeve — even when she doubts, in the moment, whether that is the wisest course — and she stands up for what she believes in without hesitation, and especially when what she believes in is the people she loves.<sup><a href="#">[27]</a></sup>
+    </p>
+    <p>
+      She is further noted for her ability to not merely share in someone's good news, but to <span class="ee" data-ee="This is one of the rarest things a person can do. She does it every time.">amplify it</span> — doubling and tripling the excitement of others, making her, by wide consensus, the best possible person to call when something good has happened.<sup><a href="#">[28]</a></sup>
+    </p>
+    <p>
+      There are very few people in the world who are genuinely and undoubtedly good. Contemporary scholarship places Maneckshaw firmly within that category — not as a courtesy, and not as an exaggeration, but as a statement of observed fact, repeated here in an encyclopaedia because it is true and because she deserves to read it in a format that takes itself seriously.<sup><a href="#">[29]</a></sup>
+    </p>
+    <p>
+      <i>As of June 2025, researchers remain unable to determine whether Thea's capacity for love, enthusiasm, and emotional support has an upper limit. Current evidence suggests it does not.</i>
+    </p>
+
+    <!-- References -->
+    <h2 class="section-heading" id="references">References <span class="mw-editsection">[<a href="#">edit</a>]</span></h2>
+    <div class="reflist">
+      <ol>
+        <li>Puranik, S. (2024). <em>Field Notes on Driving with Thea.</em> Unpublished manuscript.</li>
+        <li>Maneckshaw Family Oral Tradition (2000–present). Various transmissions.</li>
+        <li>Bryan Adams, <em>Waking Up the Neighbours</em> (1991). Documented effect on infant Thea: significant.</li>
+        <li>Cars Recitation Monitoring Committee. <em>Annual Report, 2005–present.</em></li>
+        <li>Nowrosjee Wadia College Cultural Archive. Several folders. Not all of them labeled.</li>
+        <li>Attendance Register, NWC. Cross-referenced with vibes.</li>
+        <li>Take Fifty-Six Internal Communications (2019–present). Original phrasing: "for forever."</li>
+        <li>Maneckshaw, T. (various). Things she made that were better than they needed to be.</li>
+        <li>Group Chat Archive A. Thread: "ok this is my best friend now." Day 3 of college.</li>
+        <li>Eyewitness report. Source: Thea's tear ducts. Corroborated independently.</li>
+        <li>Group Chat Archive B. Thread: "i gu." Response: "you gi." 847 instances and counting.</li>
+        <li>Conan Gray, <em>Maniac</em> (2020). Listening conditions: car, high volume, both parties present.</li>
+        <li>Puranik, S. (2023). Personal communication. Approved by Bestie.</li>
+        <li>PaySlip, undated. Summary: "money fall hua."</li>
+        <li>Student testimonials. All responses: "best teacher."</li>
+        <li>Maneckshaw Purchase History. Category: cool shit. Status: curated.</li>
+        <li>Maneckshaw, T. <em>Personal position on horror films.</em> Evolving.</li>
+        <li>Weir, A. (2021). <em>Project Hail Mary.</em> HarperCollins. Annotated copy, whereabouts known.</li>
+        <li>Eedu Lover Classification Board. <em>Final Determination re: Maneckshaw, T.</em> (2022).</li>
+        <li>Multiple witnesses. Unanimous. No dissenting opinions on file.</li>
+        <li>Pixar, <em>Cars</em> (2006). Also: innate ability. Also: the road.</li>
+        <li>Regional Linguistic Archive. Entry: "Oovoo Javer." Status: iconic.</li>
+        <li>Group Chat Archive A–F. Contributors: Kronk, Tanvi, Kuku, Aastha, Ishrath, Darsh, Vrun Vrun, Sakshi, Ira.</li>
+        <li>Boba Incident Report (2022). Filed under: laws of physics, fluid dynamics, friendship lore.</li>
+        <li>Bilateral Communication Record. Volume: large. Warmth: maximum.</li>
+        <li>Comparative Studies Unit. Final note: "it may not matter. they're just right."</li>
+        <li>Thea's friends (all of them). Independent, consistent, unrehearsed.</li>
+        <li>Event log: good news, shared with Thea. Outcome: amplified. Every time.</li>
+        <li>This encyclopaedia. Peer reviewed. Published 11 June 2025, on the occasion of a birthday.</li>
+      </ol>
+    </div>
+
+    <!-- Categories -->
+    <div id="catlinks">
+      <b>Categories:</b>
+      <a href="#">2000 births</a> · <a href="#">Living people</a> · <a href="#">Teachers</a> · <a href="#">Musicians from Pune</a> · <a href="#">Formula One enthusiasts</a> · <a href="#">Eedu lovers</a> · <a href="#">Cars (film) scholars</a> · <a href="#">People with at least 86 documented emotions</a> · <a href="#">Genuinely and undoubtedly good people</a>
+    </div>
+
+  </div><!-- /content -->
+
+  <!-- Footer -->
+  <div id="footer">
+    <span>This page was last edited on 11 June 2025.</span>
+    <span>Text is available under <a href="#">CC BY-SA 4.0</a>. Some facts verified in group chat.</span>
+    <span><a href="#">Privacy policy</a> · <a href="#">About Wikipedia</a> · <a href="#">Disclaimers</a></span>
+  </div>
+
+</div><!-- /main column -->
+</div><!-- /page container -->
+
+<script>
+document.querySelectorAll('.ee').forEach(el=>{
+  el.title='';
+});
+</script>
 </body>
 </html>
